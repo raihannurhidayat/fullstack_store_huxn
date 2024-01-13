@@ -9,6 +9,7 @@ import {
 } from "../../redux/api/userApiSlice";
 import { useEffect, useState } from "react";
 import Message from "../../components/Message";
+import AdminMenu from "./AdminMenu";
 
 const UserList = () => {
   const { data: users, refetch, isLoading, error } = useGetUserQuery();
@@ -67,6 +68,7 @@ const UserList = () => {
       ) : (
         <div className="flex flex-wrap md:flex-col">
           {/* admin menu */}
+          <AdminMenu />
           <table className="w-full md:w-4/5 mx-auto">
             <thead>
               <tr>
