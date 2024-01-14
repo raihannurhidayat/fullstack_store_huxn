@@ -99,7 +99,7 @@ const Navigation = () => {
           {userInfo ? (
             <div className="flex items-center transition-transform transform mr-2">
               <AiOutlineUser size={27} />
-              <span className="text-white ml-4">{userInfo.username}</span>
+              <span className="text-white ml-7">{userInfo.username}</span>
             </div>
           ) : (
             <></>

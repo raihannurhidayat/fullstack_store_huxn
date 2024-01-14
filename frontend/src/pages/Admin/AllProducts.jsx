@@ -6,7 +6,7 @@ import Loader from "../../components/Loader";
 import { useEffect } from "react";
 
 const AllProducts = () => {
-  const { data: products, isLoading, isError, refetch } = useAllProductsQuery();
+  const { data: products, isLoading, isError } = useAllProductsQuery();
 
   if (isLoading) {
     return <Loader />;
@@ -15,10 +15,6 @@ const AllProducts = () => {
   if (isError) {
     return <div>Error Loading Products</div>;
   }
-
-  // useEffect(() => {
-  //   refetch();
-  // }, []);
 
   return (
     <div className=" container mx-[9rem]">
@@ -57,7 +53,7 @@ const AllProducts = () => {
                     <div className="flex justify-between">
                       <Link
                         to={`/admin/product/update/${product._id}`}
-                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
                       >
                         Update Product
                         <svg

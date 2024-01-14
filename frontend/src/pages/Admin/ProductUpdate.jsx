@@ -33,6 +33,8 @@ const ProductUpdate = () => {
   const [deleteProduct] = useDeleteProductMutation();
 
   useEffect(() => {
+    console.log(productData)
+    console.log(categories)
     if (productData && productData._id) {
       setName(productData.name);
       setDescription(productData.description);
