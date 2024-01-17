@@ -43,7 +43,20 @@ const ProductDetails = () => {
 
   const addToCartHandler = () => {};
 
-  const submitHandler = () => {};
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await createReview({
+        productId,
+        rating,
+        comment,
+      }).unwrap();
+      refetch();
+      toast.success("Create Review Success");
+    } catch (error) {
+      toast.error(error?.data || error.message);
+    }
+  };
 
   return (
     <>
