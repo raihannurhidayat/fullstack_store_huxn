@@ -20,6 +20,7 @@ import {
 import moment from "moment";
 import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
+import ProductTabs from "./ProductTabs";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -39,6 +40,10 @@ const ProductDetails = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [createReview, { isLoading: loadingProductReview }] =
     useCreateReviewMutation();
+
+  const addToCartHandler = () => {};
+
+  const submitHandler = () => {};
 
   return (
     <>
@@ -132,6 +137,28 @@ const ProductDetails = () => {
                   </div>
                 )}
               </div>
+
+              <div className="btn-conteiner">
+                <button
+                  onClick={addToCartHandler}
+                  disabled={product.countInStock === 0}
+                  className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
+                >
+                  Add to cart
+                </button>
+              </div>
+            </div>
+            <div className="mt-[5rem] container flex flex-wrap items-center justify-between ml-[10rem]">
+              <ProductTabs
+                loadingProductReview={loadingProductReview}
+                userInfo={userInfo}
+                submitHandler={submitHandler}
+                rating={rating}
+                setRating={setRating}
+                comment={comment}
+                setComment={setComment}
+                product={product}
+              />
             </div>
           </div>
         </>
