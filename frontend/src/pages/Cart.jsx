@@ -15,6 +15,14 @@ const Cart = () => {
     dispatch(addToCart({ ...product, qty }));
   };
 
+  const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     <>
       <div className="container flex justify-around items-start flex-wrap mx-auto mt-8">
@@ -65,8 +73,40 @@ const Cart = () => {
                       ))}
                     </select>
                   </div>
+                  <div>
+                    <button
+                      className="text-red-500 mr-[5rem]"
+                      onClick={() => removeFromCartHandler(item._id)}
+                    >
+                      <FaTrash className="ml-[1rem] mt-[.5rem]" />
+                    </button>
+                  </div>
                 </div>
               ))}
+
+              <div className="mt-8 w-[40rem]">
+                <div className="p-4 rounded-lg">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Items ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                  </h2>
+
+                  <div className="text-2xl font-bold">
+                    {cartItems
+                      .reduce((acc, item) => acc + item.qty * item.price, 0)
+                      .toLocaleString("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                      })}
+                  </div>
+                  <button
+                    className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
+                    disabled={cartItems.length === 0}
+                    onClick={checkoutHandler}
+                  >
+                    Procced To Checkout
+                  </button>
+                </div>
+              </div>
             </div>
           </>
         )}
