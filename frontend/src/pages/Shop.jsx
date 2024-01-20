@@ -7,9 +7,10 @@ import {
   setCategories,
   setProducts,
   setChecked,
-  setRadio
+  setRadio,
 } from "../redux/features/shop/shopSlice";
 import Loader from "../components/Loader";
+import ProductCard from "./Products/ProductCard";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -130,8 +131,28 @@ const Shop = () => {
               Filter By Brand
             </h2>
             <div className="p-5 w-[15rem]">
-              <input type="text" placeholder="Enter Price" value={priceFilter} onChange={handlePriceChange} className="w-full px-3 py-2 rounded-lg" />
+              <input
+                type="text"
+                placeholder="Enter Price"
+                value={priceFilter}
+                onChange={handlePriceChange}
+                className="w-full px-3 py-2 rounded-lg"
+              />
             </div>
+            <div className="p-5 pt-0">
+              <button className="w-full border my-4" onClick={() => window.location.reload()}>Reset</button>
+            </div>
+          </div>
+          <div className="p-3">
+            <h2 className="h4 text-center mb-2">{products.length} Products</h2>
+            <div className="flex flex-wrap">
+              {products?.length === 0 ? (
+                <Loader />
+              ) : (
+                products?.map((p) => (
+                  <ProductCard p={p} />
+                ))
+              )}</div>  
           </div>
         </div>
       </div>
